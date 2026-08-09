@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Prakash B — VLSI / ASIC / RTL Design & Verification Engineer</title>
+<meta name="description" content="Portfolio of Prakash B — ECE final-year student with hands-on RTL design, ASIC/CMOS circuit design, and functional verification experience. VLSI intern at Taras Systems (Verilog, SystemVerilog, I2C) and IRRD Technologies (LTspice, CMOS, ASIC design). Targeting semiconductor design roles."/>
+<meta name="keywords" content="VLSI, RTL Design, ASIC Design, CMOS, Verilog HDL, SystemVerilog, Design Verification, I2C, LTspice, Vivado, ModelSim, FPGA, ECE Student, Portfolio, Taras Systems, IRRD Technologies, SiMaxTech"/>
+<meta property="og:title" content="Prakash B — VLSI / ASIC / RTL Design & Verification"/>
+<meta property="og:description" content="ECE Student | RTL Design | ASIC/CMOS | Design Verification | VLSI Intern"/>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cyan:    { 300:'#67e8f9', 400:'#22d3ee', 500:'#06b6d4', 600:'#0891b2' },
+        violet:  { 400:'#a78bfa', 500:'#8b5cf6', 600:'#7c3aed' },
+        emerald: { 400:'#34d399', 500:'#10b981' },
+        amber:   { 400:'#fbbf24', 500:'#f59e0b' },
+        slate:   { 950:'#020617', 900:'#0f172a', 850:'#131c30', 800:'#1e293b', 700:'#334155', 600:'#475569' }
+      },
+      fontFamily: {
+        display: ['Syne','sans-serif'],
+        mono:    ['JetBrains Mono','monospace'],
+        body:    ['Inter','sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+/* ═══════════════════════════════════════════
+   BASE & RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #020617;
+  color: #f1f5f9;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #020617; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#06b6d4,#8b5cf6); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════
+   BACKGROUND LAYERS
+═══════════════════════════════════════════ */
+.gradient-mesh {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 40% at 10% 20%, rgba(6,182,212,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(139,92,246,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 60%);
+}
+.circuit-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.11;
+}
+.circuit-bg svg { width: 100%; height: 100%; }
+.scanline {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(6,182,212,0.011) 3px,rgba(6,182,212,0.011) 4px);
+}
+#particles-canvas {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.17;
+}
+
+/* ═══════════════════════════════════════════
+   GLASS & CARDS
+═══════════════════════════════════════════ */
+.glass {
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  background: rgba(15,23,42,0.55);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.glass-hover { transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
+.glass-hover:hover {
+  background: rgba(15,23,42,0.75);
+  border-color: rgba(6,182,212,0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(6,182,212,0.08);
+}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  background: rgba(2,6,23,0.85);
+  border-bottom: 1px solid rgba(6,182,212,0.12);
+  transition: all 0.3s ease;
+}
+nav.scrolled { background: rgba(2,6,23,0.96); box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+.nav-link {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: #94a3b8; transition: color 0.2s ease; position: relative;
+}
+.nav-link::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: #06b6d4; transition: width 0.3s ease;
+}
+.nav-link:hover, .nav-link.active { color: #22d3ee; }
+.nav-link.active::after, .nav-link:hover::after { width: 100%; }
+#mobile-menu { display: none; }
+#mobile-menu.open { display: flex; }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY HELPERS
+═══════════════════════════════════════════ */
+.section-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.22em; color: #06b6d4; text-transform: uppercase; margin-bottom: 0.4rem;
+}
+.section-divider {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg,#06b6d4,#8b5cf6);
+  border-radius: 2px; margin: 0.75rem 0 1.5rem;
+}
+.gradient-text {
+  background: linear-gradient(135deg,#22d3ee,#8b5cf6,#22d3ee);
+  background-size: 200% auto; -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+  animation: gradient-shift 4s linear infinite;
+}
+@keyframes gradient-shift { 0%,100%{background-position:0% center} 50%{background-position:100% center} }
+.text-glow-cyan { text-shadow: 0 0 30px rgba(6,182,212,0.5); }
+
+/* ═══════════════════════════════════════════
+   PROFILE IMAGE FRAME
+═══════════════════════════════════════════ */
+.profile-frame {
+  position: relative; border-radius: 50%; padding: 3px;
+  background: linear-gradient(135deg,rgba(6,182,212,0.6),rgba(139,92,246,0.4),rgba(16,185,129,0.3));
+  box-shadow: 0 0 0 6px rgba(6,182,212,0.06), 0 0 40px rgba(6,182,212,0.2);
+  animation: float-soft 7s ease-in-out infinite; transition: all 0.4s ease;
+}
+.profile-frame:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 8px rgba(6,182,212,0.1), 0 0 60px rgba(6,182,212,0.35);
+}
+/* ── KEY FIX: profile image shows full face ── */
+.profile-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;   /* shows head/face, not cropped out */
+  border-radius: 50%;
+  display: block;
+}
+@keyframes float-soft { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-8px)} }
+
+/* ═══════════════════════════════════════════
+   PULSE RING
+═══════════════════════════════════════════ */
+@keyframes pulse-ring { 0%{transform:scale(0.9);opacity:.7} 100%{transform:scale(1.7);opacity:0} }
+.pulse-ring-anim { animation: pulse-ring 2s ease-out infinite; }
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: linear-gradient(135deg,#0891b2,#06b6d4);
+  color: #020617; font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.78rem; border-radius: 6px; border: 1px solid rgba(6,182,212,0.5);
+  transition: all 0.3s ease; cursor: pointer; text-decoration: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg,#06b6d4,#22d3ee);
+  box-shadow: 0 0 25px rgba(6,182,212,0.5), 0 8px 20px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid rgba(100,116,139,0.5); color: #94a3b8;
+  font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.78rem;
+  border-radius: 6px; transition: all 0.3s ease; background: transparent;
+  cursor: pointer; text-decoration: none;
+}
+.btn-ghost:hover {
+  border-color: rgba(6,182,212,0.5); color: #22d3ee;
+  box-shadow: 0 0 20px rgba(6,182,212,0.15); transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════
+   SKILL BAR
+═══════════════════════════════════════════ */
+.skill-bar {
+  height: 3px; border-radius: 9999px;
+  background: rgba(255,255,255,0.07); overflow: hidden; position: relative;
+}
+.skill-bar-fill {
+  height: 100%; border-radius: 9999px;
+  background: linear-gradient(90deg,#06b6d4,#8b5cf6);
+  width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.skill-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.3rem 0.8rem; border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 500;
+  border: 1px solid; transition: all 0.25s ease; cursor: default;
+}
+.skill-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(6,182,212,0.25); }
+
+/* ═══════════════════════════════════════════
+   FADE-UP ANIMATION
+═══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.4,0,0.2,1), transform 0.75s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-up.in-view { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   PROJECT CARD
+═══════════════════════════════════════════ */
+.project-card {
+  position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.project-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg,rgba(6,182,212,0.04),rgba(139,92,246,0.04));
+  opacity: 0; transition: opacity 0.35s ease;
+}
+.project-card:hover::before { opacity: 1; }
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(6,182,212,0.3) !important;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 30px rgba(6,182,212,0.08);
+}
+
+/* ═══════════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════════ */
+.timeline-dot {
+  width: 12px; height: 12px; border-radius: 50%; background: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6,182,212,0.15), 0 0 15px rgba(6,182,212,0.4);
+  position: absolute; left: -6px; top: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   CERT & AWARD CARDS
+═══════════════════════════════════════════ */
+.cert-card { transition: all 0.3s ease; position: relative; overflow: hidden; }
+.cert-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(6,182,212,0.5),transparent);
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.cert-card:hover::after { opacity: 1; }
+.cert-card:hover {
+  border-color: rgba(6,182,212,0.25) !important;
+  background: rgba(15,23,42,0.8) !important;
+  transform: translateX(4px);
+}
+.award-card { transition: all 0.35s ease; position: relative; overflow: hidden; }
+.award-card:hover {
+  border-color: rgba(6,182,212,0.3) !important;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 25px rgba(6,182,212,0.07);
+}
+.award-card .award-icon-bg {
+  position: absolute; bottom: -8px; right: -8px;
+  font-size: 4rem; opacity: 0.06;
+  transition: all 0.35s ease;
+}
+.award-card:hover .award-icon-bg { opacity: 0.1; transform: scale(1.1); }
+
+/* ═══════════════════════════════════════════
+   STAT CARD
+═══════════════════════════════════════════ */
+.stat-card { position: relative; overflow: hidden; }
+.stat-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg,rgba(6,182,212,0.06),rgba(139,92,246,0.04));
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT INPUT
+═══════════════════════════════════════════ */
+.contact-input {
+  width: 100%; background: rgba(15,23,42,0.6);
+  border: 1px solid rgba(71,85,105,0.5); border-radius: 6px;
+  padding: 0.65rem 1rem; color: #f1f5f9; font-family: 'Inter', sans-serif;
+  font-size: 0.85rem; transition: all 0.25s ease; outline: none;
+}
+.contact-input:focus {
+  border-color: rgba(6,182,212,0.5); box-shadow: 0 0 0 3px rgba(6,182,212,0.08);
+  background: rgba(15,23,42,0.8);
+}
+.contact-input::placeholder { color: #475569; }
+
+/* ═══════════════════════════════════════════
+   HERO TAB SYSTEM
+═══════════════════════════════════════════ */
+.tab-btn {
+  padding: 0.4rem 0.85rem; border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 600;
+  transition: all 0.2s ease; border: 1px solid transparent;
+}
+.tab-btn.active {
+  background: rgba(6,182,212,0.12); border-color: rgba(6,182,212,0.3); color: #22d3ee;
+}
+.tab-btn:not(.active) { color: #64748b; }
+.tab-btn:not(.active):hover { color: #94a3b8; }
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(2,6,23,0.88); backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: center; padding: 1rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-box { width: 100%; max-width: 700px; transform: scale(0.95); transition: transform 0.3s ease; }
+.modal-overlay.open .modal-box { transform: scale(1); }
+
+/* ═══════════════════════════════════════════
+   TYPING CURSOR
+═══════════════════════════════════════════ */
+.type-cursor::after { content: '|'; animation: blink 0.9s step-end infinite; color: #06b6d4; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ═══════════════════════════════════════════
+   FEATURED BADGE
+═══════════════════════════════════════════ */
+.featured-badge {
+  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg,#0891b2,#06b6d4);
+  color: #020617; font-family: 'JetBrains Mono', monospace; font-weight: 700;
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.25rem 0.85rem; border-radius: 9999px;
+  box-shadow: 0 0 18px rgba(6,182,212,0.5);
+}
+</style>
+</head>
+<body>
+
+<!-- ░░ BACKGROUND ░░ -->
+<div class="gradient-mesh"></div>
+<canvas id="particles-canvas"></canvas>
+<div class="circuit-bg">
+  <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow-svg"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <g stroke="#06b6d4" stroke-width="0.8" fill="none" filter="url(#glow-svg)" opacity="0.7">
+      <path d="M0,120 H180 L210,150 H480 L510,120 H850 L880,90 H1600"/>
+      <path d="M0,380 H120 L150,410 H380 L410,380 H680 L710,350 H980 L1010,380 H1600"/>
+      <path d="M0,620 H280 L310,590 H580 L610,620 H820 L850,650 H1600"/>
+      <path d="M0,820 H100 L130,790 H400 L430,820 H700 L730,850 H1000 L1030,820 H1600"/>
+      <path d="M180,0 V120 L210,150 V280 L180,310 V500 L210,530 V900"/>
+      <path d="M480,0 V90 L510,120 V260 L480,290 V480 L510,510 V900"/>
+      <path d="M850,0 V120 L880,150 V360 L850,390 V700 L880,730 V900"/>
+      <path d="M1200,0 V200 L1230,230 V500 L1200,530 V900"/>
+      <path d="M680,180 V350 L710,380 V580 L680,610 V900"/>
+      <rect x="190" y="130" width="55" height="38" rx="2" opacity="0.8"/>
+      <rect x="490" y="100" width="65" height="38" rx="2" opacity="0.8"/>
+      <rect x="860" y="80" width="75" height="40" rx="2" opacity="0.8"/>
+      <rect x="690" y="330" width="55" height="40" rx="2" opacity="0.8"/>
+      <rect x="290" y="570" width="50" height="38" rx="2" opacity="0.8"/>
+      <circle cx="180" cy="120" r="3" fill="#06b6d4"/>
+      <circle cx="510" cy="120" r="3" fill="#06b6d4"/>
+      <circle cx="880" cy="90"  r="3" fill="#22d3ee"/>
+      <circle cx="150" cy="410" r="3" fill="#06b6d4"/>
+      <circle cx="710" cy="350" r="3" fill="#22d3ee"/>
+      <circle cx="310" cy="590" r="3" fill="#06b6d4"/>
+      <circle cx="850" cy="650" r="3" fill="#22d3ee"/>
+      <circle cx="380" cy="300" r="5" stroke="#8b5cf6" opacity="0.6"/>
+      <circle cx="780" cy="480" r="5" stroke="#06b6d4" opacity="0.6"/>
+      <circle cx="580" cy="680" r="5" stroke="#8b5cf6" opacity="0.6"/>
+      <circle cx="1100" cy="230" r="5" stroke="#06b6d4" opacity="0.6"/>
+      <circle cx="1300" cy="450" r="5" stroke="#22d3ee" opacity="0.6"/>
+    </g>
+    <g stroke="#8b5cf6" stroke-width="0.5" fill="none" opacity="0.4">
+      <path d="M0,50 H550 L600,100 H1600"/>
+      <path d="M0,780 H380 L430,730 H980 L1030,780 H1600"/>
+      <path d="M1150,0 V180 L1120,210 V900"/>
+      <path d="M60,0 V380 L90,410 V900"/>
+    </g>
+    <g stroke="#06b6d4" stroke-width="0.3" opacity="0.12">
+      <line x1="0" y1="200" x2="1600" y2="200"/><line x1="0" y1="400" x2="1600" y2="400"/>
+      <line x1="0" y1="600" x2="1600" y2="600"/><line x1="400" y1="0" x2="400" y2="900"/>
+      <line x1="800" y1="0" x2="800" y2="900"/><line x1="1200" y1="0" x2="1200" y2="900"/>
+    </g>
+  </svg>
+</div>
+<div class="scanline"></div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ NAV ░░░░░░░░░░░░░░░░░░░░ -->
+<nav id="navbar">
+  <div class="max-w-6xl mx-auto px-5 py-3.5 flex items-center justify-between">
+    <a href="#hero" class="font-display font-bold text-base text-white flex items-center gap-2.5">
+      <span class="relative w-2.5 h-2.5">
+        <span class="absolute inset-0 rounded-full bg-cyan-400 pulse-ring-anim"></span>
+        <span class="absolute inset-0 rounded-full bg-cyan-500"></span>
+      </span>
+      <span class="text-glow-cyan tracking-wide">PB</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#about"          class="nav-link" data-section="about">about</a>
+      <a href="#skills"         class="nav-link" data-section="skills">skills</a>
+      <a href="#experience"     class="nav-link" data-section="experience">experience</a>
+      <a href="#projects"       class="nav-link" data-section="projects">projects</a>
+      <a href="#awards"         class="nav-link" data-section="awards">awards</a>
+      <a href="#certifications" class="nav-link" data-section="certifications">certs</a>
+      <a href="#contact" class="btn-primary text-xs py-2 px-4">
+        <i class="fas fa-paper-plane text-[10px]"></i> contact
+      </a>
+    </div>
+
+    <button id="menu-btn" class="md:hidden text-slate-400 hover:text-cyan-400 transition-colors p-1"
+      aria-label="Toggle menu" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+      <i class="fas fa-bars text-lg"></i>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="flex-col gap-3 px-5 pb-5 border-t border-slate-800/50 pt-3 font-mono text-sm">
+    <a href="#about"          onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">about</a>
+    <a href="#skills"         onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">skills</a>
+    <a href="#experience"     onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">experience</a>
+    <a href="#projects"       onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">projects</a>
+    <a href="#awards"         onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">awards</a>
+    <a href="#certifications" onclick="closeMobileMenu()" class="text-slate-400 hover:text-cyan-400 transition-colors">certs</a>
+    <a href="#contact"        onclick="closeMobileMenu()" class="text-cyan-400">contact</a>
+  </div>
+</nav>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ HERO ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="hero" class="relative z-10 pt-20 pb-16">
+  <div class="max-w-6xl mx-auto px-5 w-full pt-6 pb-4">
+    <div class="grid lg:grid-cols-[1fr_420px] gap-12 xl:gap-20 items-center">
+
+      <!-- LEFT: Identity -->
+      <div>
+        <!-- Profile + name row -->
+        <div class="flex flex-col sm:flex-row sm:items-start gap-7 mb-8 fade-up">
+          <!-- ── PROFILE FRAME ── -->
+          <div class="profile-frame flex-shrink-0 w-fit">
+            <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden bg-slate-900 relative">
+              <!--
+                object-cover  = fills the circle without distortion
+                object-top    = keeps the head/face visible at top of the crop
+              -->
+              <img
+                src="prakash-photo.jpg"
+                alt="Prakash B — VLSI Engineer"
+                class="profile-img"
+                loading="eager"
+              />
+              <!-- subtle inner ring -->
+              <div class="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10 pointer-events-none"></div>
+            </div>
+            <!-- Chip badge -->
+            <div class="absolute bottom-1.5 right-1.5 w-8 h-8 bg-slate-950 rounded-full border-2 border-cyan-500/40
+                        flex items-center justify-center shadow-lg"
+                 style="box-shadow:0 0 15px rgba(6,182,212,0.3)">
+              <i class="fas fa-microchip text-[9px] text-cyan-400"></i>
+            </div>
+          </div>
+
+          <!-- Name + role -->
+          <div class="flex flex-col justify-center">
+            <p class="section-label">// RTL Design · ASIC/CMOS · Design Verification · VLSI</p>
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.2rem] leading-tight mt-1 mb-2">
+              <span class="text-white">Prakash</span><span class="gradient-text"> B</span>
+            </h1>
+            <p class="font-mono text-[0.72rem] text-cyan-400 flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              VLSI Intern @ Taras Systems &nbsp;·&nbsp; ASIC Intern @ IRRD Technologies &nbsp;·&nbsp; ECE 2026
+            </p>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <p class="text-slate-400 text-sm leading-relaxed mb-5 max-w-xl font-body fade-up">
+          Final-year B.E. ECE student at Anna University focused on RTL Design, ASIC/CMOS, and Design Verification — with practical internship experience at
+          <span class="text-cyan-300 font-medium">Taras Systems (Bangalore)</span> (Verilog I2C RTL · 100% test success) and
+          <span class="text-cyan-300 font-medium">IRRD Technologies (Karur)</span> (CMOS circuits · LTspice · 6T SRAM · DCIM). Currently working on <span class="text-emerald-400 font-medium">NeuroFlex</span>.
+        </p>
+
+        <!-- Currently Working On: NeuroFlex -->
+        <div class="flex items-center gap-2.5 mb-6 fade-up">
+          <span class="font-mono text-[0.6rem] text-slate-500 uppercase tracking-widest">Currently Working On</span>
+          <span class="h-px flex-1 max-w-[40px] bg-slate-700"></span>
+          <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/[0.06] font-mono text-[0.68rem] text-emerald-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            NeuroFlex &mdash; Ongoing
+          </span>
+        </div>
+
+        <!-- Skill pills -->
+        <div class="flex flex-wrap gap-2 mb-8 fade-up">
+          <span class="skill-badge bg-cyan-500/10  border-cyan-500/30  text-cyan-300">
+            <i class="fas fa-microchip text-[10px]"></i> Verilog HDL
+          </span>
+          <span class="skill-badge bg-violet-500/10 border-violet-500/30 text-violet-300">
+            <i class="fas fa-code text-[10px]"></i> SystemVerilog
+          </span>
+          <span class="skill-badge bg-slate-700/40  border-slate-600/40  text-slate-300">
+            <i class="fas fa-wave-square text-[10px]"></i> RTL Design
+          </span>
+          <span class="skill-badge bg-cyan-500/10 border-cyan-500/30 text-cyan-300">
+            <i class="fas fa-sitemap text-[10px]"></i> ASIC / CMOS Design
+          </span>
+          <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300">
+            <i class="fas fa-check-circle text-[10px]"></i> Design Verification
+          </span>
+          <span class="skill-badge bg-amber-500/10 border-amber-500/25 text-amber-300">
+            <i class="fas fa-desktop text-[10px]"></i> Vivado / LTspice
+          </span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-3 mb-8 fade-up">
+          <!-- ── RESUME LINKED TO ACTUAL FILE NAME ── -->
+          <a href="Prakash B   VLSI Resume.pdf" download="Prakash_B_VLSI_Resume.pdf" class="btn-primary">
+            <i class="fas fa-download text-[11px]"></i> Download Resume
+          </a>
+          <a href="https://github.com/prakashbharathi005-max" target="_blank" rel="noopener" class="btn-ghost">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/prakashbharathi005" target="_blank" rel="noopener" class="btn-ghost">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+
+        <!-- Core Expertise card -->
+        <div class="glass rounded-xl p-4 border border-cyan-500/20 bg-cyan-500/[0.03] max-w-xl fade-up">
+          <p class="font-mono text-[0.65rem] text-cyan-400 font-bold uppercase tracking-widest mb-2.5 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            Core Technical Areas
+          </p>
+          <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs font-mono text-slate-300">
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> RTL Design · I2C FSM</div>
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> ASIC / CMOS Circuits</div>
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> Functional Verification</div>
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> SystemVerilog + UVM Basics</div>
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> FPGA RTL · Cyclone III</div>
+            <div class="flex items-center gap-1.5"><i class="fas fa-angle-right text-cyan-500 text-[10px]"></i> Waveform Analysis</div>
+          </div>
+          <div class="mt-3 pt-2.5 border-t border-slate-800/60">
+            <p class="font-mono text-[0.6rem] text-emerald-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Currently Working On: NeuroFlex Exoskeleton (Cyclone III FPGA + RTL)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Interactive Dashboard -->
+      <div class="fade-up">
+        <div class="glass rounded-2xl border border-slate-700/50 p-5 flex flex-col glow-violet relative overflow-hidden" style="min-height:430px; box-shadow:0 0 25px rgba(139,92,246,0.15)">
+
+          <!-- Tab header -->
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+            <div class="flex gap-1.5">
+              <button id="tab-metrics" class="tab-btn active" onclick="switchTab('metrics')">
+                <i class="fas fa-chart-bar mr-1"></i>METRICS
+              </button>
+              <button id="tab-sim" class="tab-btn" onclick="switchTab('sim')">
+                <i class="fas fa-terminal mr-1"></i>SIM
+              </button>
+              <button id="tab-waves" class="tab-btn" onclick="switchTab('waves')">
+                <i class="fas fa-wave-square mr-1"></i>WAVES
+              </button>
+            </div>
+            <span class="font-mono text-[0.6rem] text-emerald-400 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-ring-anim"></span>LIVE
+            </span>
+          </div>
+
+          <!-- Tab: METRICS -->
+          <div id="content-metrics" class="grid grid-cols-2 gap-3 flex-1">
+            <div class="stat-card glass rounded-xl p-4 text-center border border-slate-800 glass-hover">
+              <div class="text-2xl font-display font-extrabold text-cyan-400 mb-0.5">8.19</div>
+              <div class="text-[0.6rem] text-slate-500 font-mono">CGPA / 10.0</div>
+              <div class="text-[0.55rem] text-slate-600 font-mono">5th Sem · Anna Univ</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center border border-slate-800 glass-hover">
+              <div class="text-2xl font-display font-extrabold text-violet-400 mb-0.5">6+</div>
+              <div class="text-[0.6rem] text-slate-500 font-mono">Certifications</div>
+              <div class="text-[0.55rem] text-slate-600 font-mono">NPTEL · Infosys · Maven</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center border border-slate-800 glass-hover">
+              <div class="text-2xl font-display font-extrabold text-amber-400 mb-0.5">₹10K</div>
+              <div class="text-[0.6rem] text-slate-500 font-mono">Seed Funding</div>
+              <div class="text-[0.55rem] text-slate-600 font-mono">CCET-IIC Grant</div>
+            </div>
+            <div class="stat-card glass rounded-xl p-4 text-center border border-slate-800 glass-hover">
+              <div class="text-2xl font-display font-extrabold text-emerald-400 mb-0.5">3</div>
+              <div class="text-[0.6rem] text-slate-500 font-mono">Core Projects</div>
+              <div class="text-[0.55rem] text-slate-600 font-mono">RTL + Embedded + IoT</div>
+            </div>
+            <!-- NPTEL bar -->
+            <div class="stat-card glass rounded-xl p-4 col-span-2 border border-slate-800">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-mono text-[0.62rem] text-slate-400">NPTEL — IoT · IIT Kharagpur</span>
+                <span class="text-[0.62rem] font-mono text-amber-400 font-bold">ELITE ★</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="background:linear-gradient(90deg,#f59e0b,#10b981); width:85%"></div>
+              </div>
+              <div class="flex justify-between mt-1 text-[0.58rem] font-mono">
+                <span class="text-slate-600">Score</span>
+                <span class="text-amber-400 font-bold">85%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: SIM -->
+          <div id="content-sim" class="hidden flex-col flex-1 font-mono text-[0.65rem]">
+            <div class="flex flex-col flex-1 bg-black/70 rounded-xl border border-slate-800 p-4 leading-relaxed overflow-hidden" style="min-height:300px;">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2 text-[0.6rem] text-slate-500">
+                <span>i2c_master_slave_tb.sv</span>
+                <span id="sim-status" class="text-cyan-400 animate-pulse">STATUS: RUNNING</span>
+              </div>
+              <div id="terminal-output" class="flex-1 overflow-y-auto space-y-1 pr-1 text-[0.62rem] max-h-[250px]"></div>
+              <div class="mt-2 pt-2 border-t border-slate-800 flex justify-between items-center text-[0.6rem] text-slate-500">
+                <span class="text-slate-600">prakash@silicon:~$</span>
+                <div class="flex gap-2">
+                  <button onclick="restartSim()" class="hover:text-cyan-400 transition-colors border border-slate-700 rounded px-1.5 py-0.5 bg-slate-900/40">
+                    <i class="fas fa-redo text-[9px]"></i> Restart
+                  </button>
+                  <button id="sim-toggle" onclick="toggleSim()" class="hover:text-cyan-400 transition-colors border border-slate-700 rounded px-1.5 py-0.5 bg-slate-900/40">
+                    <i class="fas fa-pause text-[9px]"></i> Pause
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab: WAVES -->
+          <div id="content-waves" class="hidden flex-col flex-1">
+            <div class="flex flex-col flex-1 bg-slate-950/80 rounded-xl border border-slate-800 p-4 font-mono text-[0.65rem]" style="min-height:300px;">
+              <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3 text-[0.6rem] text-slate-500">
+                <span>LOGIC_ANALYZER // i2c_signals</span>
+                <span class="text-emerald-400 font-bold animate-pulse">TRIGGERED</span>
+              </div>
+              <div class="relative w-full rounded overflow-hidden border border-slate-800/80" style="height:140px;">
+                <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:18px_18px]"></div>
+                <svg id="waveform-svg" viewBox="0 0 400 120" class="w-full h-full" preserveAspectRatio="none">
+                  <text x="6" y="26" fill="#fbbf24" font-family="JetBrains Mono" font-size="7" font-weight="bold">SCL</text>
+                  <text x="6" y="72" fill="#22d3ee"  font-family="JetBrains Mono" font-size="7" font-weight="bold">SDA</text>
+                  <path d="M28,28 H36 V10 H44 V28 H52 V10 H60 V28 H68 V10 H76 V28 H84 V10 H92 V28 H100 V10 H108 V28 H116 V10 H124 V28 H132 V10 H140 V28 H148 V10 H156 V28 H164 V10 H172 V28 H180 V10 H188 V28 H196 V10 H204 V28 H212 V10 H220 V28 H228 V10 H236 V28 H244 V10 H252 V28 H260 V10 H268 V28 H276 V10 H284 V28 H292 V10 H300 V28 H308 V10 H316 V28 H324 V10 H332 V28 H340 V10 H348 V28 H356 V10 H364 V28"
+                        stroke="#fbbf24" stroke-width="1.5" fill="none" opacity="0.9"/>
+                  <path id="sda-path" d="M28,60 H40 V80 H52 V60 H68 V80 H100 V60 H116 V80 H132 V60 H148 V80 H164 V60 H180 V80 H196 V60 H212 V80 H228 V60 H244 V80 H260 V60 H276 V80 H292 V60 H308 V80 H324 V60 H340 V80 H356 V60 H368"
+                        stroke="#22d3ee" stroke-width="1.5" fill="none" opacity="0.9"/>
+                  <text x="6" y="100" fill="#8b5cf6" font-family="JetBrains Mono" font-size="7" font-weight="bold">TRIG</text>
+                  <path d="M28,105 H180 V90 H200 V105 H380" stroke="#8b5cf6" stroke-width="1" fill="none" opacity="0.7"/>
+                  <line id="wave-cursor" x1="50" y1="4" x2="50" y2="116" stroke="#ef4444" stroke-width="1.5" opacity="0.8" stroke-dasharray="3,2"/>
+                </svg>
+              </div>
+              <div class="grid grid-cols-3 gap-2 mt-3 text-[0.6rem] text-center">
+                <div class="bg-slate-900/60 rounded p-1.5 border border-slate-800/50">
+                  <span class="block text-slate-600 text-[0.55rem] uppercase">State</span>
+                  <span id="wave-state" class="text-cyan-400 font-semibold uppercase">IDLE</span>
+                </div>
+                <div class="bg-slate-900/60 rounded p-1.5 border border-slate-800/50">
+                  <span class="block text-slate-600 text-[0.55rem] uppercase">Bus</span>
+                  <span id="wave-bus" class="text-amber-400 font-bold">FREE</span>
+                </div>
+                <div class="bg-slate-900/60 rounded p-1.5 border border-slate-800/50">
+                  <span class="block text-slate-600 text-[0.55rem] uppercase">Sim</span>
+                  <span class="text-emerald-400 font-bold">OK</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end grid -->
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 text-[0.65rem] font-mono animate-bounce">
+      <span>scroll</span><i class="fas fa-chevron-down text-[10px]"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ ABOUT ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="about" class="relative z-10 py-24 border-t border-slate-900">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">01. about</p>
+      <h2 class="font-display font-bold text-3xl text-white">Who I Am</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 fade-up">
+      <div class="md:col-span-2 glass rounded-2xl p-8 border border-slate-800 glass-hover">
+        <p class="text-slate-300 leading-relaxed text-base mb-5 font-body">
+          Final-year B.E. Electronics &amp; Communication Engineering student at
+          <span class="text-cyan-400 font-semibold">Chettinad College of Engineering &amp; Technology, Karur</span>
+          (Anna University), with a focused interest in VLSI design, RTL implementation, and digital circuit verification.
+        </p>
+        <p class="text-slate-400 leading-relaxed text-base mb-4 font-body">
+          Gained industry experience through two semiconductor internships:
+          at <span class="text-emerald-400 font-semibold">Taras Systems and Solutions Pvt. Ltd., Bangalore</span>
+          as a VLSI Design &amp; Verification Intern — designed Verilog-based I2C Master-Slave RTL with FSM-controlled read/write operations, achieving <span class="text-cyan-300 font-medium">100% functional test case success</span> in Xilinx Vivado;
+          and at <span class="text-emerald-400 font-semibold">IRRD Technologies, Karur</span> as an ASIC Design Intern — designed transistor-level CMOS circuits including 4-bit Array Multiplier, 6T SRAM, 4&times;4 SRAM Array, DCIM, D Flip-Flop, and Shift Register in LTspice with waveform-based verification.
+        </p>
+        <p class="text-slate-500 leading-relaxed text-sm mb-6 font-body">
+          Currently developing <span class="text-emerald-400 font-semibold">NeuroFlex</span> — an EMG-based wearable hand exoskeleton where all real-time signal processing (gesture recognition FSM, digital filter, PWM servo control) is implemented in Verilog RTL on a <span class="text-emerald-400 font-semibold">Cyclone III FPGA</span>.
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-800">
+          <div>
+            <span class="font-mono text-[0.62rem] text-slate-500 uppercase tracking-wider">Location</span>
+            <p class="text-slate-300 text-sm mt-1">Thanjavur, TN</p>
+          </div>
+          <div>
+            <span class="font-mono text-[0.62rem] text-slate-500 uppercase tracking-wider">Degree</span>
+            <p class="text-slate-300 text-sm mt-1">B.E. ECE &middot; 2026</p>
+          </div>
+          <div>
+            <span class="font-mono text-[0.62rem] text-slate-500 uppercase tracking-wider">CGPA</span>
+            <p class="text-cyan-400 text-sm mt-1 font-bold">8.19 / 10.0</p>
+          </div>
+          <div>
+            <span class="font-mono text-[0.62rem] text-slate-500 uppercase tracking-wider">Target Roles</span>
+            <p class="text-slate-300 text-sm mt-1">RTL &middot; ASIC &middot; Verification</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="glass rounded-xl p-5 border-l-2 border-cyan-500 border border-slate-800 glass-hover">
+          <div class="text-cyan-400 mb-2 text-lg"><i class="fas fa-graduation-cap"></i></div>
+          <div class="text-sm text-white font-semibold mb-1">Academic Background</div>
+          <div class="text-xs text-slate-500 font-mono leading-relaxed">HSC: 71.67%<br/>Nav Bharat Matric. Hr. Sec. School</div>
+        </div>
+        <div class="glass rounded-xl p-5 border-l-2 border-amber-500 border border-slate-800 glass-hover">
+          <div class="text-amber-400 mb-2 text-lg"><i class="fas fa-seedling"></i></div>
+          <div class="text-sm text-white font-semibold mb-1">Seed Funded</div>
+          <div class="text-xs text-slate-500 font-mono leading-relaxed">₹10,000 from CCET-IIC for<br/>AeroGuard project innovation</div>
+        </div>
+        <div class="glass rounded-xl p-5 border-l-2 border-violet-500 border border-slate-800 glass-hover">
+          <div class="text-violet-400 mb-2 text-lg"><i class="fas fa-file-alt"></i></div>
+          <div class="text-sm text-white font-semibold mb-1">Published Paper</div>
+          <div class="text-xs text-slate-500 font-mono leading-relaxed">ICETET'25 International Conference<br/>Madurai · April 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ SKILLS ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="skills" class="relative z-10 py-24 bg-slate-900/30">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">02. skills</p>
+      <h2 class="font-display font-bold text-3xl text-white">Technical Stack</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-500 text-sm font-mono">// Foundational tools and languages — actively learning and building</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10 fade-up">
+
+      <div class="glass rounded-2xl p-6 border border-slate-800 glass-hover group">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 flex items-center justify-center mb-4 group-hover:bg-cyan-500/25 transition-colors">
+          <i class="fas fa-code text-cyan-400"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-sm mb-4">HDL &amp; Programming</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Verilog HDL</span><span class="text-cyan-400">Proficient</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">SystemVerilog</span><span class="text-cyan-400">Working</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="52"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">C / Embedded C</span><span class="text-slate-400">Familiar</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#475569,#64748b)" data-width="55"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Python</span><span class="text-slate-400">Familiar</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#475569,#64748b)" data-width="45"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-slate-800 glass-hover group">
+        <div class="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center mb-4 group-hover:bg-violet-500/25 transition-colors">
+          <i class="fas fa-sitemap text-violet-400"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-sm mb-4">VLSI / Digital / ASIC</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">RTL Design</span><span class="text-violet-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="62"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">ASIC Design</span><span class="text-violet-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="58"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">CMOS Design</span><span class="text-violet-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="60"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Digital Electronics</span><span class="text-violet-400">Solid</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-slate-800 glass-hover group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center mb-4 group-hover:bg-emerald-500/25 transition-colors">
+          <i class="fas fa-check-double text-emerald-400"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-sm mb-4">Verification</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Functional Verification</span><span class="text-emerald-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#059669,#34d399)" data-width="62"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Waveform Analysis</span><span class="text-emerald-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#059669,#34d399)" data-width="65"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">RTL Debugging</span><span class="text-emerald-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#059669,#34d399)" data-width="58"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">UVM Basics</span><span class="text-slate-400">Intro</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#475569,#64748b)" data-width="28"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-6 border border-slate-800 glass-hover group">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center mb-4 group-hover:bg-amber-500/25 transition-colors">
+          <i class="fas fa-desktop text-amber-400"></i>
+        </div>
+        <h3 class="font-display font-bold text-white text-sm mb-4">FPGA / EDA Tools</h3>
+        <div class="space-y-3">
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Xilinx Vivado</span><span class="text-amber-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#b45309,#fbbf24)" data-width="65"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">LTspice</span><span class="text-amber-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#b45309,#fbbf24)" data-width="62"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">ModelSim</span><span class="text-amber-400">Practiced</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#b45309,#fbbf24)" data-width="58"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-[0.65rem] font-mono mb-1">
+              <span class="text-slate-400">Microwind / MATLAB</span><span class="text-slate-400">Familiar</span>
+            </div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="background:linear-gradient(90deg,#475569,#64748b)" data-width="40"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- All tools row -->
+    <div class="glass rounded-2xl p-6 border border-slate-800 fade-up">
+      <p class="font-mono text-[0.65rem] text-slate-500 uppercase tracking-wider mb-4">// All Tools &amp; Technologies</p>
+      <div class="flex flex-wrap gap-2">
+        <!-- HDL / Programming -->
+        <span class="skill-badge bg-cyan-500/10 border-cyan-500/30 text-cyan-300"><i class="fas fa-microchip text-[9px]"></i> Verilog HDL</span>
+        <span class="skill-badge bg-violet-500/10 border-violet-500/30 text-violet-300"><i class="fas fa-code text-[9px]"></i> SystemVerilog</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-terminal text-[9px]"></i> Python</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-code text-[9px]"></i> C / Embedded C</span>
+        <!-- VLSI / Digital -->
+        <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300"><i class="fas fa-sitemap text-[9px]"></i> RTL Design</span>
+        <span class="skill-badge bg-violet-500/10 border-violet-500/30 text-violet-300"><i class="fas fa-bolt text-[9px]"></i> Digital VLSI</span>
+        <span class="skill-badge bg-violet-500/10 border-violet-500/30 text-violet-300"><i class="fas fa-microchip text-[9px]"></i> ASIC Design</span>
+        <span class="skill-badge bg-violet-500/10 border-violet-500/30 text-violet-300"><i class="fas fa-layer-group text-[9px]"></i> CMOS Design</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-bolt text-[9px]"></i> Digital Electronics</span>
+        <!-- Verification -->
+        <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300"><i class="fas fa-check-circle text-[9px]"></i> Functional Verification</span>
+        <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300"><i class="fas fa-wave-square text-[9px]"></i> Waveform Analysis</span>
+        <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300"><i class="fas fa-bug text-[9px]"></i> RTL Debugging</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-layer-group text-[9px]"></i> UVM Basics</span>
+        <!-- FPGA / EDA -->
+        <span class="skill-badge bg-cyan-500/10 border-cyan-500/30 text-cyan-300"><i class="fas fa-desktop text-[9px]"></i> Xilinx Vivado</span>
+        <span class="skill-badge bg-amber-500/10 border-amber-500/25 text-amber-300"><i class="fas fa-flask text-[9px]"></i> LTspice</span>
+        <span class="skill-badge bg-emerald-500/10 border-emerald-500/25 text-emerald-300"><i class="fas fa-terminal text-[9px]"></i> ModelSim</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-calculator text-[9px]"></i> MATLAB</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-microchip text-[9px]"></i> Microwind</span>
+        <!-- Protocols -->
+        <span class="skill-badge bg-cyan-500/10 border-cyan-500/30 text-cyan-300"><i class="fas fa-network-wired text-[9px]"></i> I2C</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-exchange-alt text-[9px]"></i> UART</span>
+        <span class="skill-badge bg-slate-700/40 border-slate-600/40 text-slate-300"><i class="fas fa-exchange-alt text-[9px]"></i> SPI</span>
+        <!-- Embedded -->
+        <span class="skill-badge bg-amber-500/10 border-amber-500/25 text-amber-300"><i class="fas fa-wifi text-[9px]"></i> Arduino</span>
+        <span class="skill-badge bg-amber-500/10 border-amber-500/25 text-amber-300"><i class="fas fa-wifi text-[9px]"></i> ESP8266 / ESP32</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ EXPERIENCE ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="experience" class="relative z-10 py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">03. experience</p>
+      <h2 class="font-display font-bold text-3xl text-white">Where I've Worked</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="relative pl-7 fade-up" style="border-left: 2px solid rgba(30,41,59,1);">
+      <div class="timeline-dot"></div>
+
+      <!-- TARAS SYSTEMS -->
+      <div class="glass rounded-2xl p-7 mb-6 border border-slate-800 glass-hover">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
+          <div>
+            <h3 class="font-display font-bold text-xl text-white">VLSI Design &amp; Verification Intern</h3>
+            <p class="text-cyan-400 font-semibold mt-1 text-sm">Taras Systems and Solutions Pvt. Ltd.</p>
+            <p class="text-slate-500 text-xs font-mono mt-1 flex items-center gap-1.5">
+              <i class="fas fa-map-marker-alt text-[9px]"></i> Bangalore, Karnataka
+            </p>
+          </div>
+          <div class="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
+            <span class="px-3 py-1.5 bg-cyan-500/10 border border-cyan-500/25 rounded-full text-cyan-300 text-xs font-mono">Dec 2025 – May 2026</span>
+            <span class="px-3 py-1 bg-slate-700/40 border border-slate-600/30 rounded-full text-slate-400 text-[0.6rem] font-mono flex items-center gap-1">
+              <i class="fas fa-check-circle text-emerald-400 text-[9px]"></i> Completed
+            </span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-3 mb-6">
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Designed and simulated Verilog HDL-based I2C Master and Slave RTL modules with FSM-controlled read/write operations in Xilinx Vivado, achieving <span class="text-cyan-300 font-medium">100% functional test case success</span>.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Gained hands-on experience in Front-End VLSI design, Verilog HDL, SystemVerilog, and UVM basics for RTL design and functional verification workflows.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Gained experience in RTL debugging and digital verification using simulation-based designs in Vivado Simulator and ModelSim.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Applied SystemVerilog testbench constructs and basic UVM concepts for directed functional verification of I2C read/write bus transactions.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">Verilog HDL</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">SystemVerilog</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">RTL Design</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">I2C Protocol</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">Xilinx Vivado</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">ModelSim</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">FSM Design</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">Functional Verification</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">UVM Basics</span>
+        </div>
+      </div>
+
+      <!-- IRRD TECHNOLOGIES -->
+      <div class="timeline-dot" style="top: auto; margin-top: 2px;"></div>
+      <div class="glass rounded-2xl p-7 mb-6 border border-slate-800 glass-hover">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
+          <div>
+            <h3 class="font-display font-bold text-xl text-white">ASIC Design Intern</h3>
+            <p class="text-amber-400 font-semibold mt-1 text-sm">IRRD Technologies</p>
+            <p class="text-slate-500 text-xs font-mono mt-1 flex items-center gap-1.5">
+              <i class="fas fa-map-marker-alt text-[9px]"></i> Karur, Tamil Nadu
+            </p>
+          </div>
+          <div class="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
+            <span class="px-3 py-1.5 bg-amber-500/10 border border-amber-500/25 rounded-full text-amber-300 text-xs font-mono">Jun 2026</span>
+            <span class="px-3 py-1 bg-slate-700/40 border border-slate-600/30 rounded-full text-slate-400 text-[0.6rem] font-mono flex items-center gap-1">
+              <i class="fas fa-check-circle text-emerald-400 text-[9px]"></i> Completed
+            </span>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-3 mb-6">
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Designed and simulated transistor-level CMOS digital circuits in LTspice — including Logic Gates, 4-bit Array Multiplier, D Flip-Flop, Shift Register, and Multiplexers — with waveform-based functional verification.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Implemented 6T SRAM cell, 4&times;4 SRAM Array, and Digital Compute-In-Memory (DCIM) architecture; verified read/write operations and memory behaviour through LTspice transient waveform analysis.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Gained hands-on exposure to the ASIC design flow — from CMOS circuit design and transistor-level implementation to simulation and functional verification.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 flex-shrink-0"></div>
+            <p class="text-slate-400 text-sm leading-relaxed">Analysed propagation delay, voltage transfer characteristics, and signal integrity of CMOS gate-level circuits to confirm correct digital behaviour against expected outputs.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">ASIC Design</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">CMOS Digital Circuits</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">LTspice</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">4-bit Array Multiplier</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">6T SRAM</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">DCIM</span>
+          <span class="text-xs px-2.5 py-1 bg-slate-800 rounded-full text-slate-400 font-mono border border-slate-700">Waveform Verification</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ PROJECTS ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="projects" class="relative z-10 py-24 bg-slate-900/30">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">04. projects</p>
+      <h2 class="font-display font-bold text-3xl text-white">What I've Built</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-500 text-sm font-mono">// RTL design, ASIC/CMOS circuits, embedded systems — ordered by SiMaxTech relevance</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 fade-up">
+
+      <!-- ═══ PROJECT 1 — ASIC Design & CMOS Digital Circuits (FEATURED) ═══ -->
+      <div class="glass project-card rounded-2xl p-6 flex flex-col border border-amber-500/30 relative" style="box-shadow:0 0 30px rgba(245,158,11,0.07)">
+        <!-- Featured badge -->
+        <div class="featured-badge" style="background:linear-gradient(135deg,#b45309,#f59e0b)">SiMaxTech Highlight</div>
+
+        <div class="absolute top-4 right-4 text-[0.58rem] font-mono text-slate-600 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800">IRRD Internship · Completed</div>
+
+        <div class="flex items-center gap-3 mb-4 mt-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center">
+            <i class="fas fa-microchip text-amber-400"></i>
+          </div>
+          <span class="text-[0.68rem] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">ASIC / CMOS Design</span>
+        </div>
+
+        <h3 class="font-display font-bold text-white text-base mb-3 leading-snug">
+          ASIC Design &amp; CMOS Digital Circuits — LTspice
+        </h3>
+
+        <ul class="space-y-2 flex-1 mb-4 text-slate-400 text-xs leading-relaxed list-none">
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
+            Designed and simulated transistor-level CMOS logic gates and digital circuits; implemented 4-bit Array Multiplier, D Flip-Flop, Shift Register, and 4:1 Multiplexer in LTspice with full transient waveform verification.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
+            Implemented 6T SRAM cell, 4&times;4 SRAM Array, and Digital Compute-In-Memory (DCIM) architecture at transistor level; verified read/write operations and memory behaviour through waveform analysis.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-amber-500 mt-1.5 flex-shrink-0"></div>
+            Verified all circuit functionality through LTspice waveform analysis — confirming propagation delay, voltage transfer characteristics, and correct logical output.
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">CMOS</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">LTspice</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">6T SRAM</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">4-bit Array Multiplier</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">DCIM</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">ASIC Design</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[0.62rem] font-mono text-slate-500">
+          <span>Tool: <span class="text-amber-400 font-bold">LTspice XVII</span></span>
+          <span class="text-amber-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Sim Verified</span>
+        </div>
+      </div>
+
+      <!-- ═══ PROJECT 2 — I2C Master-Slave RTL ═══ -->
+      <div class="glass project-card rounded-2xl p-6 flex flex-col border border-slate-800">
+        <div class="absolute top-4 right-4 text-[0.58rem] font-mono text-slate-600 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800">fsm_states: 7</div>
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/15 flex items-center justify-center">
+            <i class="fas fa-wave-square text-cyan-400"></i>
+          </div>
+          <span class="text-[0.68rem] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">RTL Design</span>
+        </div>
+
+        <h3 class="font-display font-bold text-white text-base mb-3 leading-snug">
+          RTL Design &amp; Simulation of I2C Master-Slave Communication Protocol
+        </h3>
+
+        <ul class="space-y-2 flex-1 mb-4 text-slate-400 text-xs leading-relaxed list-none">
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-cyan-500 mt-1.5 flex-shrink-0"></div>
+            Designed Verilog HDL I2C Master and Slave RTL modules with FSM-based read/write control logic implementing START, ADDRESS, ACK, DATA, and STOP state sequencing over SDA/SCL lines.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-cyan-500 mt-1.5 flex-shrink-0"></div>
+            Validated protocol transactions through waveform inspection in Vivado Simulator and ModelSim, confirming master-slave handshaking and bus behaviour.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-cyan-500 mt-1.5 flex-shrink-0"></div>
+            Developed SystemVerilog testbench for directed functional verification of I2C read/write sequences; debugged RTL timing issues through simulation logs.
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Verilog HDL</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">FSM Design</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">I2C Protocol</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Xilinx Vivado</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[0.62rem] font-mono text-slate-500 mb-3">
+          <span>Module: <span class="text-cyan-400 font-bold">i2c_master.v</span></span>
+          <span class="text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> RTL Simulated</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <a href="https://github.com/prakashbharathi005-max/i2c-master-slave-rtl" target="_blank" rel="noopener"
+             class="btn-ghost text-[0.65rem] py-1.5 justify-center">
+            <i class="fab fa-github text-[10px]"></i> Code
+          </a>
+          <button onclick="openModal('i2c_wave')" class="btn-ghost text-[0.65rem] py-1.5 justify-center">
+            <i class="fas fa-wave-square text-[10px]"></i> Waveform
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══ PROJECT 3 — NeuroFlex Exoskeleton (ONGOING — FPGA/RTL) ═══ -->
+      <div class="glass project-card rounded-2xl p-6 flex flex-col border border-emerald-500/30 relative" style="box-shadow:0 0 25px rgba(16,185,129,0.08)">
+        <div class="absolute top-4 right-4 text-[0.58rem] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ONGOING
+        </div>
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+            <i class="fas fa-microchip text-emerald-400"></i>
+          </div>
+          <span class="text-[0.68rem] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">RTL / FPGA / Embedded</span>
+        </div>
+
+        <h3 class="font-display font-bold text-white text-base mb-1 leading-snug">
+          NeuroFlex — EMG-Based Wearable Hand Exoskeleton
+        </h3>
+        <p class="text-slate-500 text-[0.65rem] font-mono mb-3">Intelligent Rehab &amp; Assistive Motion System</p>
+
+        <ul class="space-y-2 flex-1 mb-4 text-slate-400 text-xs leading-relaxed list-none">
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            EMG sensor module acquires forearm bioelectric signals (~0.1–5 mV, 20–500 Hz); conditioned to 0–3.3V analog output via instrumentation amp, band-pass filter, and envelope detector. ESP32 performs 12-bit ADC sampling at ~1 kHz and transmits packetized samples over UART at 115200 baud.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            <strong class="text-emerald-300">Cyclone III FPGA</strong> is the main processing unit — all real-time signal processing implemented in Verilog/RTL: UART receiver, EMG sample buffer (shift register), digital moving-average filter, hysteresis threshold detector, peak detector with debounce, and Gesture Recognition FSM.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            FPGA-generated PWM (50 Hz, 1–2 ms pulse) drives servo motors; nylon tendon routing converts servo rotation into finger flexion/extension for assisted hand movement. MATLAB used for offline waveform visualization (non-critical path).
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-emerald-400 font-mono border border-emerald-800">Cyclone III FPGA</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Verilog RTL</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Gesture FSM</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">PWM Generator</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">ESP32</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">EMG Sensor</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">UART</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[0.62rem] font-mono text-slate-500">
+          <span>RTL: <span class="text-emerald-400 font-bold">Cyclone III (Verilog)</span></span>
+          <span class="text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> In Development</span>
+        </div>
+      </div>
+
+      <!-- ═══ PROJECT 4 — AeroGuard (FEATURED) ═══ -->
+      <div class="glass project-card rounded-2xl p-6 flex flex-col border border-cyan-500/30 relative" style="box-shadow:0 0 30px rgba(6,182,212,0.07)">
+        <!-- Featured badge -->
+        <div class="featured-badge">Featured Project</div>
+
+        <div class="absolute top-4 right-4 text-[0.58rem] font-mono text-slate-600 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800">2nd Prize · IIC Funded</div>
+
+        <div class="flex items-center gap-3 mb-4 mt-2">
+          <div class="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center">
+            <i class="fas fa-rocket text-violet-400"></i>
+          </div>
+          <span class="text-[0.68rem] font-mono text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-full border border-violet-500/20">Embedded System</span>
+        </div>
+
+        <h3 class="font-display font-bold text-white text-base mb-3 leading-snug">
+          AeroGuard — Missile-Inspired Real-Time Stabilization System
+        </h3>
+
+        <ul class="space-y-2 flex-1 mb-4 text-slate-400 text-xs leading-relaxed list-none">
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-violet-500 mt-1.5 flex-shrink-0"></div>
+            Developed an ESP8266-based wireless stabilization system using MPU6050 IMU sensor; integrated I2C communication for real-time 3-axis motion sensing.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-violet-500 mt-1.5 flex-shrink-0"></div>
+            Implemented stabilization control logic and wireless real-time data transmission for remote monitoring of orientation data.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-violet-500 mt-1.5 flex-shrink-0"></div>
+            Awarded <span class="text-amber-300 font-medium">₹10,000 Seed Funding</span> by CCET-IIC and <span class="text-cyan-300 font-medium">Second Prize</span> at Techno Battle '25 – Project Expo, CCET.
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">I2C / MPU6050</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">ESP8266 NodeMCU</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">Embedded C</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[0.62rem] font-mono text-slate-500 mb-3">
+          <span>Award: <span class="text-amber-400 font-bold">₹10K IIC Grant</span></span>
+          <span class="text-violet-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse"></span> Recognised</span>
+        </div>
+
+        <a href="https://github.com/prakashbharathi005-max" target="_blank" rel="noopener"
+           class="btn-primary text-[0.65rem] py-1.5 justify-center w-full">
+          <i class="fab fa-github text-[10px]"></i> View on GitHub
+        </a>
+      </div>
+
+      <!-- ═══ PROJECT 3 — IoT Flood Detection ═══ -->
+      <div class="glass project-card rounded-2xl p-6 flex flex-col border border-slate-800 md:col-span-2 lg:col-span-1">
+        <div class="absolute top-4 right-4 text-[0.58rem] font-mono text-slate-600 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-800">ICETET'25</div>
+
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+            <i class="fas fa-water text-emerald-400"></i>
+          </div>
+          <span class="text-[0.68rem] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">IoT System</span>
+        </div>
+
+        <h3 class="font-display font-bold text-white text-base mb-3 leading-snug">
+          IoT Based Early Flood Detection &amp; Avoidance System
+        </h3>
+
+        <ul class="space-y-2 flex-1 mb-4 text-slate-400 text-xs leading-relaxed list-none">
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            Designed an ESP8266-based flood monitoring system with water-level sensor integration and real-time LCD display output; implemented automatic pump control using sensor thresholds.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            Implemented GSM module-based SMS alert system for real-time flood notifications to enable timely emergency response.
+          </li>
+          <li class="flex items-start gap-2">
+            <div class="w-1 h-1 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+            Presented at the 12th International Conference on Emerging Trends in Engineering &amp; Technology (ICETET'25), Madurai, April 2025.
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">ESP8266</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">GSM Module</span>
+          <span class="text-[0.6rem] px-2 py-0.5 bg-slate-800 rounded text-slate-400 font-mono">IoT Sensors</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60 flex items-center justify-between text-[0.62rem] font-mono text-slate-500 mb-3">
+          <span>Published: <span class="text-emerald-400 font-bold">ICETET'25</span></span>
+          <span class="text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Conference Paper</span>
+        </div>
+
+        <!-- No GitHub link for this project per specification -->
+        <div class="glass rounded-lg p-2.5 border border-slate-800 text-center">
+          <p class="text-[0.6rem] font-mono text-slate-500">
+            <i class="fas fa-file-alt text-emerald-400 mr-1"></i>
+            Presented at ICETET'25 · April 4–5, 2025 · Madurai
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ AWARDS ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="awards" class="relative z-10 py-24">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">05. awards</p>
+      <h2 class="font-display font-bold text-3xl text-white">Honours &amp; Awards</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-500 text-sm font-mono">// Recognitions earned through academic work, innovation, and technical excellence</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 fade-up">
+
+      <!-- Award 1: Seed Funding -->
+      <div class="glass award-card rounded-2xl p-6 border border-slate-800">
+        <div class="award-icon-bg"><i class="fas fa-seedling"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/25 flex items-center justify-center mb-4">
+          <i class="fas fa-hand-holding-usd text-amber-400"></i>
+        </div>
+        <h4 class="font-display font-bold text-white text-sm mb-2">₹10,000 Seed Funding Grant</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Awarded by the Management of Chettinad College of Engineering &amp; Technology (CCET), Karur, endorsed by the Institution's Innovation Council (IIC) under the NBA framework, for the project "AeroGuard" — recognised for innovation and technical excellence.
+        </p>
+        <span class="text-[0.6rem] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">CCET-IIC Grant</span>
+      </div>
+
+      <!-- Award 2: 2nd Prize -->
+      <div class="glass award-card rounded-2xl p-6 border border-slate-800">
+        <div class="award-icon-bg"><i class="fas fa-trophy"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center mb-4">
+          <i class="fas fa-medal text-cyan-400"></i>
+        </div>
+        <h4 class="font-display font-bold text-white text-sm mb-2">2nd Prize — Techno Battle '25</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Secured at the Intra-College Technical Meet Project Expo, Chettinad College of Engineering and Technology, December 23, 2025, for the design of "AeroGuard — Real-Time Missile-Inspired Stabilization System with Wireless Monitoring."
+        </p>
+        <span class="text-[0.6rem] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">CCET · Dec 2025</span>
+      </div>
+
+      <!-- Award 3: NPTEL IoT Elite -->
+      <div class="glass award-card rounded-2xl p-6 border border-slate-800">
+        <div class="award-icon-bg"><i class="fas fa-award"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center mb-4">
+          <i class="fas fa-star text-emerald-400"></i>
+        </div>
+        <h4 class="font-display font-bold text-white text-sm mb-2">NPTEL Elite — IoT (IIT Kharagpur)</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Achieved a consolidated score of 85% — 25/25 in online assignments and 60/75 in the proctored examination — in the 12-week, 4-credit academic programme. Certified among 38,143 successful candidates.
+        </p>
+        <div class="flex items-center gap-2">
+          <span class="text-[0.6rem] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">Score: 85%</span>
+          <span class="text-[0.6rem] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">ELITE ★</span>
+        </div>
+      </div>
+
+      <!-- Award 4: NPTEL VLSI Testing -->
+      <div class="glass award-card rounded-2xl p-6 border border-slate-800">
+        <div class="award-icon-bg"><i class="fas fa-microchip"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/25 flex items-center justify-center mb-4">
+          <i class="fas fa-certificate text-violet-400"></i>
+        </div>
+        <h4 class="font-display font-bold text-white text-sm mb-2">NPTEL — Digital VLSI Testing (IIT KGP)</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Completed the 4-credit, 12-week curriculum from IIT Kharagpur covering advanced VLSI fault modelling, ATPG, and digital test topologies. Certified among only 797 globally qualified candidates from this course.
+        </p>
+        <span class="text-[0.6rem] font-mono text-violet-400 bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded">IIT Kharagpur · Jan–Apr 2026</span>
+      </div>
+
+      <!-- Award 5: International Paper -->
+      <div class="glass award-card rounded-2xl p-6 border border-slate-800 sm:col-span-2 lg:col-span-1">
+        <div class="award-icon-bg"><i class="fas fa-globe"></i></div>
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center mb-4">
+          <i class="fas fa-file-alt text-cyan-400"></i>
+        </div>
+        <h4 class="font-display font-bold text-white text-sm mb-2">ICETET'25 — International Research Paper</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+          Presented a technical paper titled <em class="text-slate-300">"IoT Based Early Flood Detection and Avoidance"</em> at the 12th International Conference on Emerging Trends in Engineering and Technology, Pandian Saraswathi Yadav Engineering College, Madurai — April 4–5, 2025.
+        </p>
+        <span class="text-[0.6rem] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded">Published · April 2025 · Madurai</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ CERTIFICATIONS ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="certifications" class="relative z-10 py-24 bg-slate-900/30 border-t border-slate-900">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">06. certifications</p>
+      <h2 class="font-display font-bold text-3xl text-white">Certifications &amp; Training</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-500 text-sm font-mono">// 6 credential records across NPTEL, Infosys, Taras Systems, Maven Silicon &amp; NIELIT</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 fade-up">
+
+      <!-- Cert 1: NPTEL IoT -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/25 flex items-center justify-center">
+          <i class="fas fa-star text-amber-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">Introduction to Internet of Things</h4>
+            <span class="text-[0.6rem] font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded flex-shrink-0">ELITE ★</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">NPTEL · IIT Kharagpur &nbsp;|&nbsp; Jan–Apr 2025</p>
+          <p class="text-slate-500 text-xs">4-credit, 12-week programme. Consolidated Score: 85%. Certified among 38,143 candidates.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" style="background:linear-gradient(90deg,#f59e0b,#10b981)" data-width="85"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Score</span><span class="text-amber-400 font-bold">85%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert 2: NPTEL Digital VLSI Testing -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/25 flex items-center justify-center">
+          <i class="fas fa-microchip text-violet-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">Digital VLSI Testing</h4>
+            <span class="text-[0.6rem] font-mono text-violet-400 bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded flex-shrink-0">Completed</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">NPTEL · IIT Kharagpur &nbsp;|&nbsp; Jan–Apr 2026</p>
+          <p class="text-slate-500 text-xs">4-credit, 12-week core. Fault modelling, ATPG, test topologies. Score: 57%. 797 certified candidates.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="57"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Score</span><span class="text-violet-400 font-bold">57%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert 3: Infosys VLSI -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center">
+          <i class="fas fa-award text-cyan-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">VLSI Digital Design &amp; Verilog</h4>
+            <span class="text-[0.6rem] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded flex-shrink-0">Completed</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">Infosys Springboard &nbsp;|&nbsp; March 20, 2026</p>
+          <p class="text-slate-500 text-xs">Certified by Senior Vice President, Infosys Ltd. Comprehensive Verilog HDL and digital design curriculum.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" data-width="100"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Completion</span><span class="text-cyan-400 font-bold">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert 4: Taras Systems Internship -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center">
+          <i class="fas fa-industry text-emerald-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">VLSI Design &amp; Verification Internship</h4>
+            <span class="text-[0.6rem] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded flex-shrink-0">Industry</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">Taras Systems and Solutions Pvt. Ltd. &nbsp;|&nbsp; Dec 2025 – May 2026</p>
+          <p class="text-slate-500 text-xs">Verilog &amp; SystemVerilog Industry Track. Certificate No: TSS10496. Bangalore, Karnataka.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" style="background:linear-gradient(90deg,#059669,#34d399)" data-width="100"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Status</span><span class="text-emerald-400 font-bold">Completed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert 5: Maven Silicon -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/25 flex items-center justify-center">
+          <i class="fas fa-certificate text-violet-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">VLSI System On Chip Design</h4>
+            <span class="text-[0.6rem] font-mono text-violet-400 bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded flex-shrink-0">Completed</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">Maven Silicon &nbsp;|&nbsp; January 21, 2026</p>
+          <p class="text-slate-500 text-xs">RISC-V Partner Overview Course. SoC architecture fundamentals. ID: MSUID 9921052178.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" style="background:linear-gradient(90deg,#7c3aed,#a78bfa)" data-width="100"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Completion</span><span class="text-violet-400 font-bold">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cert 6: NIELIT -->
+      <div class="cert-card glass rounded-2xl p-6 border border-slate-800 flex gap-4">
+        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/25 flex items-center justify-center">
+          <i class="fas fa-landmark text-cyan-400"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <div class="flex items-start justify-between gap-2 mb-1.5">
+            <h4 class="font-display font-bold text-white text-sm leading-snug">VLSI for Beginners Training</h4>
+            <span class="text-[0.6rem] font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded flex-shrink-0">Gov. India</span>
+          </div>
+          <p class="text-slate-400 text-xs font-mono mb-1">NIELIT Calicut &nbsp;|&nbsp; March 10–14, 2026</p>
+          <p class="text-slate-500 text-xs">Ministry of Electronics &amp; IT, Government of India — online professional training track.</p>
+          <div class="skill-bar mt-2.5 mb-1">
+            <div class="skill-bar-fill" data-width="100"></div>
+          </div>
+          <div class="flex justify-between text-[0.6rem] font-mono">
+            <span class="text-slate-600">Completion</span><span class="text-cyan-400 font-bold">100%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ CONTACT ░░░░░░░░░░░░░░░░░░░░ -->
+<section id="contact" class="relative z-10 py-24 border-t border-slate-900">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="mb-12 fade-up">
+      <p class="section-label">07. contact</p>
+      <h2 class="font-display font-bold text-3xl text-white">Get In Touch</h2>
+      <div class="section-divider"></div>
+      <p class="text-slate-400 text-sm font-body max-w-lg">
+        Open to VLSI internship opportunities, learning collaborations, and RTL design discussions. Feel free to reach out!
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 fade-up">
+      <!-- Contact info -->
+      <div class="space-y-4">
+        <a href="mailto:prakashbharathi005@gmail.com" class="glass rounded-2xl p-5 border border-slate-800 glass-hover flex items-center gap-4 group">
+          <div class="w-10 h-10 rounded-xl bg-cyan-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-envelope text-cyan-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs font-mono mb-0.5">Email</p>
+            <p class="text-white text-sm font-semibold group-hover:text-cyan-400 transition-colors">prakashbharathi005@gmail.com</p>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/prakashbharathi005" target="_blank" rel="noopener"
+           class="glass rounded-2xl p-5 border border-slate-800 glass-hover flex items-center gap-4 group">
+          <div class="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fab fa-linkedin text-violet-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs font-mono mb-0.5">LinkedIn</p>
+            <p class="text-white text-sm font-semibold group-hover:text-violet-400 transition-colors">linkedin.com/in/prakashbharathi005</p>
+          </div>
+        </a>
+        <a href="https://github.com/prakashbharathi005-max" target="_blank" rel="noopener"
+           class="glass rounded-2xl p-5 border border-slate-800 glass-hover flex items-center gap-4 group">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fab fa-github text-emerald-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs font-mono mb-0.5">GitHub</p>
+            <p class="text-white text-sm font-semibold group-hover:text-emerald-400 transition-colors">github.com/prakashbharathi005-max</p>
+          </div>
+        </a>
+
+        <!-- Resume CTA -->
+        <div class="glass rounded-2xl p-6 border border-cyan-500/20 bg-cyan-500/[0.03]">
+          <p class="font-mono text-xs text-cyan-400 mb-2 flex items-center gap-1.5">
+            <i class="fas fa-file-pdf"></i> Resume
+          </p>
+          <p class="text-slate-400 text-sm mb-4">Download my resume structured for VLSI internship and RTL design roles.</p>
+          <a href="Prakash B   VLSI Resume.pdf" download="Prakash_B_VLSI_Resume.pdf" class="btn-primary w-full justify-center">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <div class="glass rounded-2xl p-7 border border-slate-800">
+        <h3 class="font-display font-bold text-white text-base mb-5">Send a Message</h3>
+        <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[0.65rem] font-mono text-slate-500 uppercase tracking-wider mb-1.5">Name</label>
+              <input type="text" class="contact-input" placeholder="Your name" required/>
+            </div>
+            <div>
+              <label class="block text-[0.65rem] font-mono text-slate-500 uppercase tracking-wider mb-1.5">Email</label>
+              <input type="email" class="contact-input" placeholder="your@email.com" required/>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[0.65rem] font-mono text-slate-500 uppercase tracking-wider mb-1.5">Subject</label>
+            <input type="text" class="contact-input" placeholder="VLSI Internship / Collaboration..."/>
+          </div>
+          <div>
+            <label class="block text-[0.65rem] font-mono text-slate-500 uppercase tracking-wider mb-1.5">Message</label>
+            <textarea class="contact-input" rows="5" placeholder="Your message..." required style="resize:vertical;"></textarea>
+          </div>
+          <button type="submit" id="submit-btn" class="btn-primary w-full justify-center">
+            <i class="fas fa-paper-plane text-[11px]"></i> Send Message
+          </button>
+          <div id="form-success" class="hidden text-emerald-400 font-mono text-xs text-center py-2">
+            <i class="fas fa-check-circle mr-1"></i> Message sent! I'll get back to you soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ FOOTER ░░░░░░░░░░░░░░░░░░░░ -->
+<footer class="relative z-10 py-10 border-t border-slate-900">
+  <div class="max-w-6xl mx-auto px-5 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+      <span class="font-display font-bold text-white text-sm">Prakash B</span>
+      <span class="text-slate-600 text-xs font-mono">&middot; RTL | ASIC/CMOS | Verification</span>
+    </div>
+    <p class="text-slate-700 text-xs font-mono text-center">Designed with passion · Built with HTML + Tailwind CSS · 2026</p>
+    <div class="flex items-center gap-4">
+      <a href="https://github.com/prakashbharathi005-max" target="_blank" rel="noopener" class="text-slate-500 hover:text-cyan-400 transition-colors"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/prakashbharathi005" target="_blank" rel="noopener" class="text-slate-500 hover:text-violet-400 transition-colors"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:prakashbharathi005@gmail.com" class="text-slate-500 hover:text-emerald-400 transition-colors"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ WAVEFORM MODAL ░░░░░░░░░░░░░░░░░░░░ -->
+<div id="modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box glass rounded-2xl border border-slate-700 p-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h3 id="modal-title" class="font-display font-bold text-white text-base"></h3>
+        <p class="text-xs font-mono text-slate-500 mt-0.5">Simulation Output — Xilinx Vivado</p>
+      </div>
+      <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+        <i class="fas fa-times text-xs"></i>
+      </button>
+    </div>
+    <div class="bg-slate-950/80 rounded-xl border border-slate-800 p-4 mb-4" style="min-height:160px;">
+      <div class="relative w-full rounded overflow-hidden border border-slate-800/60" style="height:130px;">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+        <svg id="modal-waveform" viewBox="0 0 600 120" class="w-full h-full" preserveAspectRatio="none"></svg>
+      </div>
+    </div>
+    <div id="modal-desc" class="text-slate-400 text-xs font-mono leading-relaxed"></div>
+  </div>
+</div>
+
+<!-- ░░░░░░░░░░░░░░░░░░░░ JAVASCRIPT ░░░░░░░░░░░░░░░░░░░░ -->
+<script>
+/* ══════════════════ PARTICLES ══════════════════ */
+(function() {
+  const cv = document.getElementById('particles-canvas');
+  const cx = cv.getContext('2d');
+  let W, H;
+  const pts = [];
+
+  function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const cols = ['#06b6d4','#8b5cf6','#10b981'];
+  for (let i = 0; i < 85; i++) {
+    pts.push({
+      x: Math.random()*W, y: Math.random()*H,
+      r: Math.random()*1.3+0.3,
+      vx:(Math.random()-.5)*.22, vy:(Math.random()-.5)*.22,
+      a: Math.random()*.5+.1,
+      c: cols[Math.floor(Math.random()*cols.length)]
+    });
+  }
+
+  function draw() {
+    cx.clearRect(0,0,W,H);
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = W+10; if (p.x > W+10) p.x = -10;
+      if (p.y < -10) p.y = H+10; if (p.y > H+10) p.y = -10;
+      cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      cx.fillStyle = p.c; cx.globalAlpha = p.a; cx.fill();
+      for (let j = i+1; j < pts.length; j++) {
+        const q = pts[j];
+        const d = Math.hypot(p.x-q.x, p.y-q.y);
+        if (d < 105) {
+          cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y);
+          cx.strokeStyle = p.c; cx.globalAlpha = (1-d/105)*0.07;
+          cx.lineWidth = 0.5; cx.stroke();
+        }
+      }
+    }
+    cx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══════════════════ NAV ══════════════════ */
+const navbar   = document.getElementById('navbar');
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) cur = s.id; });
+  navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === cur));
+});
+
+function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+/* ══════════════════ FADE-UP OBSERVER ══════════════════ */
+const fadeEls = document.querySelectorAll('.fade-up');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+fadeEls.forEach(el => io.observe(el));
+
+/* ══════════════════ SKILL BAR REVEAL ══════════════════ */
+const skillIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-bar-fill[data-width]').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+      skillIo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('section').forEach(s => skillIo.observe(s));
+
+/* ══════════════════ HERO TAB SYSTEM ══════════════════ */
+const tabIds = ['metrics','sim','waves'];
+function switchTab(tab) {
+  tabIds.forEach(id => {
+    const content = document.getElementById('content-'+id);
+    const btn     = document.getElementById('tab-'+id);
+    const isActive = id === tab;
+    btn.classList.toggle('active', isActive);
+    if (isActive) {
+      content.classList.remove('hidden');
+      content.style.display = (id === 'sim' || id === 'waves') ? 'flex' : 'grid';
+    } else {
+      content.classList.add('hidden');
+    }
+  });
+  if (tab === 'sim'   && !simStarted) startSim();
+  if (tab === 'waves') startWaveAnim();
+}
+
+/* ══════════════════ TERMINAL SIM ══════════════════ */
+let simStarted = false, simPaused = false, simTimer = null;
+const simLines = [
+  { c:'#06b6d4', t:'// Compiling: i2c_master.v i2c_slave.v tb.sv' },
+  { c:'#64748b', t:'[00:00] Simulation starting...' },
+  { c:'#64748b', t:'[00:10] Reset applied. rst_n = 0 → 1' },
+  { c:'#64748b', t:'[00:50] SCL clock enabled. 400kHz' },
+  { c:'#10b981', t:'[01:20] START condition detected on SDA' },
+  { c:'#10b981', t:'[02:10] Address byte sent: 0x50 (Write)' },
+  { c:'#10b981', t:'[03:00] ACK received from slave' },
+  { c:'#10b981', t:'[03:90] DATA byte: 0xAB transmitted' },
+  { c:'#10b981', t:'[04:50] ACK: Slave responded correctly' },
+  { c:'#64748b', t:'[05:00] STOP condition generated' },
+  { c:'#10b981', t:'[05:50] Read transaction initiated' },
+  { c:'#10b981', t:'[06:20] Address: 0x50 (Read mode)' },
+  { c:'#10b981', t:'[07:00] DATA received: 0xAB ← matches write' },
+  { c:'#22d3ee', t:'✓ Test 1/1: Write-Read PASSED' },
+  { c:'#22d3ee', t:'── $finish at t=120ns ──' },
+];
+
+function appendLog(line) {
+  const out = document.getElementById('terminal-output');
+  const el  = document.createElement('div');
+  el.style.color   = line.c;
+  el.style.opacity = '0';
+  el.style.transition = 'opacity 0.3s ease';
+  el.textContent = line.t;
+  out.appendChild(el);
+  requestAnimationFrame(() => el.style.opacity = '1');
+  out.scrollTop = out.scrollHeight;
+}
+
+function startSim() {
+  simStarted = true;
+  let idx = 0;
+  function next() {
+    if (simPaused || idx >= simLines.length) {
+      if (idx >= simLines.length) {
+        document.getElementById('sim-status').textContent = 'STATUS: COMPLETE';
+        document.getElementById('sim-status').classList.remove('animate-pulse');
+      }
+      return;
+    }
+    appendLog(simLines[idx++]);
+    simTimer = setTimeout(next, 420 + Math.random()*280);
+  }
+  next();
+}
+
+function restartSim() {
+  clearTimeout(simTimer);
+  simStarted = false; simPaused = false;
+  document.getElementById('terminal-output').innerHTML = '';
+  document.getElementById('sim-status').textContent = 'STATUS: RUNNING';
+  document.getElementById('sim-status').classList.add('animate-pulse');
+  document.getElementById('sim-toggle').innerHTML = '<i class="fas fa-pause text-[9px]"></i> Pause';
+  startSim();
+}
+
+function toggleSim() {
+  simPaused = !simPaused;
+  const btn = document.getElementById('sim-toggle');
+  if (simPaused) {
+    btn.innerHTML = '<i class="fas fa-play text-[9px]"></i> Resume';
+    clearTimeout(simTimer);
+  } else {
+    btn.innerHTML = '<i class="fas fa-pause text-[9px]"></i> Pause';
+    startSim();
+  }
+}
+
+/* ══════════════════ WAVEFORM CURSOR ══════════════════ */
+const waveStates = ['IDLE','START','ADDR','ACK','DATA','ACK','DATA','STOP','IDLE'];
+const busModes   = ['FREE','BUSY','BUSY','BUSY','BUSY','BUSY','BUSY','FREE','FREE'];
+let waveAnimRunning = false;
+
+function startWaveAnim() {
+  if (waveAnimRunning) return;
+  waveAnimRunning = true;
+  const cursor  = document.getElementById('wave-cursor');
+  const stateEl = document.getElementById('wave-state');
+  const busEl   = document.getElementById('wave-bus');
+  let x = 30;
+
+  function step() {
+    if (!waveAnimRunning) return;
+    x += 1.1; if (x > 380) x = 30;
+    if (cursor) { cursor.setAttribute('x1', x); cursor.setAttribute('x2', x); }
+    const si = Math.floor((x - 30) / 43) % waveStates.length;
+    if (stateEl) stateEl.textContent = waveStates[si] || 'IDLE';
+    if (busEl)   busEl.textContent   = busModes[si]   || 'FREE';
+    requestAnimationFrame(step);
+  }
+  step();
+}
+
+/* ══════════════════ MODAL ══════════════════ */
+const modalData = {
+  i2c_wave: {
+    title: 'I2C Master-Slave — Waveform',
+    desc: 'SCL: 400kHz clock · SDA: START → ADDR(0x50) → ACK → DATA(0xAB) → ACK → STOP. Basic read/write transaction verified in Vivado Simulator.',
+    waves: [
+      { label:'SCL',  y:22, c:'#fbbf24', type:'clock' },
+      { label:'SDA',  y:62, c:'#22d3ee', type:'data'  },
+      { label:'TRIG', y:97, c:'#8b5cf6', type:'reset' },
+    ]
+  },
+  uart_wave: {
+    title: 'UART TX/RX — Waveform',
+    desc: 'TX line: START bit, 8 data bits (0xAB), STOP bit. RX loopback verified. Baud: 9600. Simulation output from ModelSim.',
+    waves: [
+      { label:'CLK', y:15, c:'#64748b', type:'clock' },
+      { label:'TX',  y:55, c:'#22d3ee', type:'uart'  },
+      { label:'RX',  y:90, c:'#10b981', type:'uart'  },
+    ]
+  },
+  spi_wave: {
+    title: 'SPI Controller — Waveform',
+    desc: 'SCLK, CS (active-low), MOSI data out, MISO loopback. SPI Mode 0 — data sampled on rising edge. Verified in Vivado.',
+    waves: [
+      { label:'SCLK', y:18, c:'#fbbf24', type:'clock' },
+      { label:'MOSI', y:55, c:'#22d3ee', type:'data'  },
+      { label:'MISO', y:90, c:'#8b5cf6', type:'data'  },
+    ]
+  },
+  fifo_wave: {
+    title: 'Sync FIFO — Waveform',
+    desc: 'WR_EN/RD_EN controlled operations. FULL flag asserted when buffer saturates. EMPTY flag on flush. Vivado simulation verified.',
+    waves: [
+      { label:'CLK',   y:15, c:'#64748b', type:'clock'  },
+      { label:'WR_EN', y:52, c:'#22d3ee', type:'enable' },
+      { label:'FULL',  y:88, c:'#ef4444', type:'flag'   },
+    ]
+  },
+};
+
+function openModal(key) {
+  const d = modalData[key]; if (!d) return;
+  document.getElementById('modal-title').textContent = d.title;
+  document.getElementById('modal-desc').textContent  = d.desc;
+  const svg = document.getElementById('modal-waveform');
+  svg.innerHTML = '';
+
+  // Grid lines
+  for (let x = 30; x < 600; x += 40) {
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',x); l.setAttribute('x2',x); l.setAttribute('y1',4); l.setAttribute('y2',116);
+    l.setAttribute('stroke','rgba(255,255,255,0.035)'); l.setAttribute('stroke-width','0.5');
+    svg.appendChild(l);
+  }
+
+  d.waves.forEach(w => {
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.setAttribute('x','4'); lbl.setAttribute('y', w.y+4);
+    lbl.setAttribute('fill',w.c); lbl.setAttribute('font-family','JetBrains Mono');
+    lbl.setAttribute('font-size','7'); lbl.setAttribute('font-weight','bold');
+    lbl.textContent = w.label; svg.appendChild(lbl);
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    const hi = w.y-8, lo = w.y+8;
+    let pd = '';
+
+    if (w.type === 'clock') {
+      pd = `M 30,${lo}`; for (let x = 30; x < 580; x+=16) pd += ` H${x+8} V${hi} H${x+16} V${lo}`;
+    } else if (w.type === 'data') {
+      pd = `M 30,${lo} H60 V${hi} H90 V${lo} H130 V${lo} H180 V${hi} H220 V${lo} H270 V${hi} H310 V${lo} H370 V${hi} H420 V${lo} H490 V${hi} H540 V${lo} H580`;
+    } else if (w.type === 'uart') {
+      pd = `M 30,${hi} H70 V${lo} H90 V${hi} H110 V${lo} H130 V${hi} H150 V${lo} H170 V${hi} H190 V${lo} H210 V${hi} H280 H320 V${lo} H340 V${hi} H580`;
+    } else if (w.type === 'reset') {
+      pd = `M 30,${lo} H55 V${hi} H580`;
+    } else if (w.type === 'enable') {
+      pd = `M 30,${hi} H60 V${lo} H120 V${hi} H200 V${lo} H280 V${hi} H350 V${lo} H430 V${hi} H580`;
+    } else if (w.type === 'flag') {
+      pd = `M 30,${hi} H200 V${lo} H350 V${hi} H580`;
+    }
+
+    path.setAttribute('d',pd); path.setAttribute('stroke',w.c);
+    path.setAttribute('stroke-width','1.5'); path.setAttribute('fill','none'); path.setAttribute('opacity','0.9');
+    svg.appendChild(path);
+  });
+
+  // Animated cursor
+  const cursor = document.createElementNS('http://www.w3.org/2000/svg','line');
+  cursor.setAttribute('x1','50'); cursor.setAttribute('x2','50');
+  cursor.setAttribute('y1','4'); cursor.setAttribute('y2','116');
+  cursor.setAttribute('stroke','#ef4444'); cursor.setAttribute('stroke-width','1.5');
+  cursor.setAttribute('stroke-dasharray','3,2'); cursor.setAttribute('opacity','0.85');
+  svg.appendChild(cursor);
+
+  let cx2 = 50;
+  function animCursor() {
+    if (!document.getElementById('modal').classList.contains('open')) return;
+    cx2 += 1; if (cx2 > 590) cx2 = 30;
+    cursor.setAttribute('x1',cx2); cursor.setAttribute('x2',cx2);
+    requestAnimationFrame(animCursor);
+  }
+  requestAnimationFrame(animCursor);
+
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ══════════════════ CONTACT FORM ══════════════════ */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin text-[11px]"></i> Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = '<i class="fas fa-check text-[11px]"></i> Sent!';
+    btn.style.background = 'linear-gradient(135deg,#059669,#10b981)';
+    document.getElementById('form-success').classList.remove('hidden');
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-paper-plane text-[11px]"></i> Send Message';
+      btn.style.background = ''; btn.disabled = false;
+      document.getElementById('form-success').classList.add('hidden');
+      e.target.reset();
+    }, 3000);
+  }, 1200);
+}
+
+/* ══════════════════ TYPING EFFECT ══════════════════ */
+(function typeEffect() {
+  const phrases = [
+    'ECE Final Year · Anna University',
+    'VLSI Intern @ Taras Systems · ASIC Intern @ IRRD',
+    'RTL Design · Verilog · SystemVerilog',
+    'ASIC/CMOS Designer · LTspice · Vivado',
+    'Building NeuroFlex — Cyclone III FPGA + RTL',
+  ];
+  const el = document.querySelector('.type-cursor');
+  if (!el) return;
+  let pi = 0, ci = 0, del = false;
+  function type() {
+    const phrase = phrases[pi];
+    if (!del) { el.textContent = phrase.slice(0,ci++); if (ci > phrase.length) { del = true; setTimeout(type,1800); return; }}
+    else { el.textContent = phrase.slice(0,ci--); if (ci < 0) { del = false; pi = (pi+1)%phrases.length; ci = 0; }}
+    setTimeout(type, del ? 40 : 70);
+  }
+  type();
+})();
+</script>
+</body>
+</html>
